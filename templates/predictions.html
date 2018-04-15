@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Prediction for this passenger is:
+    {% if prediction == '0' %}
+      Didn't Survive (x_x)
+    {% else %}
+      Survived :)
+    {% endif %}
+    <h1>
+    Survival Probability: {{predict_prob}}
+{% endblock %}
