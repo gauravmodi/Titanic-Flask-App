@@ -15,7 +15,6 @@ Survival probability too.
 
 ## Steps:
 ### Data preperation and model building
-```
 + Reading data
 + Splitting the data into training and testing data
 + Imputing missing values from training dataset.
@@ -23,7 +22,7 @@ Survival probability too.
 + Encoding Categorical predictors using sklearn LabelEncoder
 + Fitting RandomForestClassifier with Training data
 + Serializing the model to disk
-```
+
 ### Prediction on flask app
 ```
 + Navigate to prediction page - http://localhost:5000/predict.
