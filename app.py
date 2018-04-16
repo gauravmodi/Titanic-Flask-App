@@ -42,6 +42,7 @@ class PredictorsForm(Form):
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
 	form = PredictorsForm(request.form)
+	
 	# Checking if user submitted the form and the values are valid
 	if request.method == 'POST' and form.validate():
 		# Now save all values passed by user into variables
@@ -52,17 +53,22 @@ def predict():
 		parch = form.parch.data
 		fare = form.fare.data
 		embarked = form.embarked.data
+
 		# Creating input for model for predictions
 		predict_request = [int(p_class), int(sex), float(age), int(sibsp), int(parch), float(fare), int(embarked)]
 		predict_request = np.array(predict_request).reshape(1, -1)
+
 		# Class predictions from the model
 		prediction = model.predict(predict_request)
 		prediction = str(prediction[0])
+
 		# Survival Probability from the model
 		predict_prob = model.predict_proba(predict_request)
 		predict_prob = str(predict_prob[0][1])
+
 		# Passing the predictions to new view(template)
 		return render_template('predictions.html', prediction=prediction, predict_prob=predict_prob)
+
 	return render_template('predict.html', form=form)
 
 @app.route('/train', methods=['GET'])
