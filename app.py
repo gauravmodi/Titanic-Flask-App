@@ -1,6 +1,6 @@
 # importing the packages
 import json
-import pandas as pd
+# import pandas as pd
 import numpy as np
 from flask import Flask, request, jsonify, render_template, flash#, redirect, url_for, session, logging
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
@@ -11,6 +11,9 @@ from sklearn.ensemble import RandomForestClassifier
 
 # value of __name__ should be  '__main__'
 app = Flask(__name__)
+# Loading model so that it works on production
+model = joblib.load('./model/model.pkl')
+
 
 @app.route('/')
 def index():
@@ -28,13 +31,13 @@ class PredictorsForm(Form):
 
 	Inherits: request.form class
 	"""
-	p_class = StringField(u'P Class', validators=[validators.input_required()])
-	sex = StringField(u'Sex', validators=[validators.input_required()])
-	age = StringField(u'Age', validators=[validators.input_required()])
-	sibsp = StringField(u'Siblings and Spouse Count', validators=[validators.input_required()])
-	parch = StringField(u'Parch', validators=[validators.input_required()])
-	fare = StringField(u'Fare', validators=[validators.input_required()])
-	embarked = StringField(u'Embarked', validators=[validators.input_required()])
+	p_class = StringField(u'P Class (Valid Values: 1, 2, 3)', validators=[validators.input_required()])
+	sex = StringField(u'Sex (0: Female and 1: Male)', validators=[validators.input_required()])
+	age = StringField(u'Age (For eg.: 24)', validators=[validators.input_required()])
+	sibsp = StringField(u'Siblings and Spouse Count (For eg.: 3)', validators=[validators.input_required()])
+	parch = StringField(u'Parch (Valid Values: 0, 1, 2, 3, 4, 5, 6)', validators=[validators.input_required()])
+	fare = StringField(u'Fare (For eg.: 100)', validators=[validators.input_required()])
+	embarked = StringField(u'Embarked (Valid Values: 0, 1, 2)', validators=[validators.input_required()])
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -115,7 +118,7 @@ def train():
 
 if __name__ == '__main__':
 	# Load the pre-trained model from the disk
-	model = joblib.load('./model/model.pkl')
+	# model = joblib.load('./model/model.pkl')
 	# Running the app in debug mode allows to change the code and
 	# see the changes without the need to restart the server
 	app.run(debug=True)
