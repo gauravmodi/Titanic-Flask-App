@@ -38,8 +38,8 @@ _(last edit: 04/15/2018)_
 ```
 python app.py
 ```
-This will start flask app server. Now can open the site by opening http://localhost:5000
-NOTE: Right now, app runs in debug mode
+This will start flask app server. Now can open the site by opening http://localhost:5000<br>
+Note: Right now, app runs in debug mode
 
 ## Future work
 + Improve the model
