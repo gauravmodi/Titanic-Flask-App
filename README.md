@@ -1,8 +1,7 @@
 # Flask app for Titanic: Machine Learning from Disaster
 **- Gaurav Modi**<br>
 _(last edit: 04/15/2018)_
-<p>This is flask app to predict if a particular passenger survived or not. Along with the label, it shows the 
-Survival probability too.
+<p>This is a flask app to predict whether a particular passenger would survive. Along with the label, it shows the Survival probability too.
 
 ## Packages Used:
 ```
@@ -38,13 +37,12 @@ Survival probability too.
 
 ```
 python app.py
-# This will start flask app server. 
-# Now can open the site by opening http://localhost:5000/ page.
-# NOTE: Right now, app runs in debug mode
 ```
+This will start flask app server. Now can open the site by opening http://localhost:5000
+NOTE: Right now, app runs in debug mode
 
 ## Future work
 + Improve the model
 + Provide drop down for user input
-+ Take user input as string for categorical data, instead of current method i.e. numeric values.
-+ Improve the design of site.
++ Take user input as string for categorical data, instead of current method i.e. encoded numeric values.
++ Improve the UI and UX.
